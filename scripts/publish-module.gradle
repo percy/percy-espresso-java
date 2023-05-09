@@ -48,8 +48,7 @@ afterEvaluate {
                     }
                     developers {
                         developer {
-                            id = 'pankaj443'
-                            name = 'Pankaj Yadav'
+                            name = 'Team Browserstack'
                         }
                     }
 

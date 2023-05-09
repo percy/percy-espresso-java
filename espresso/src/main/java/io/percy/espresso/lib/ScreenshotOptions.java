@@ -5,6 +5,7 @@ public class ScreenshotOptions {
   private Integer statusBarHeight = null;
   private Integer navBarHeight = null;
   private String orientation = null;
+  private Boolean fullScreen = null;
 
   public String getDeviceName() {
     return deviceName;
@@ -22,6 +23,10 @@ public class ScreenshotOptions {
       return orientation;
   }
 
+  public Boolean getFullScreen() {
+      return fullScreen;
+  }
+
   public void setDeviceName(String deviceNameParam) {
       deviceName = deviceNameParam;
   }
@@ -37,4 +42,9 @@ public class ScreenshotOptions {
   public void setOrientation(String orientationParam) {
       orientation = orientationParam;
   }
+
+  public void setFullScreen(Boolean fullScreenParam) {
+      fullScreen = fullScreenParam;
+  }
+
 }

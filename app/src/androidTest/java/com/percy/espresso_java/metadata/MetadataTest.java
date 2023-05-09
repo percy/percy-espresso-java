@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import io.percy.espresso.lib.ScreenshotOptions;
 import io.percy.espresso.metadata.Metadata;
 
 /**
@@ -26,7 +27,7 @@ public class MetadataTest {
 
     @Before
     public void setUp() {
-        metadata = new Metadata(null,null,null,null,null);
+        metadata = new Metadata(new ScreenshotOptions());
     }
 
     @Test
@@ -47,12 +48,6 @@ public class MetadataTest {
     }
 
     @Test
-    public void testPlatformVersionExternallyProvided() {
-        metadata = new Metadata(null,null,null,null,"12");
-        assertEquals(metadata.platformVersion(), "12");
-    }
-
-    @Test
     public void testDeviceScreenWidth() {
         assertEquals(metadata.deviceScreenWidth().intValue(), Resources.getSystem().getDisplayMetrics().widthPixels);
     }
@@ -69,7 +64,9 @@ public class MetadataTest {
 
     @Test
     public void testStatBarHeightExternallyProvided() {
-        metadata = new Metadata(null,100,null,null,null);
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setStatusBarHeight(100);
+        metadata = new Metadata(options);
         assertEquals(metadata.statBarHeight().intValue(), 100);
     }
 
@@ -80,7 +77,9 @@ public class MetadataTest {
 
     @Test
     public void testNavBarHeightExternallyProvided() {
-        metadata = new Metadata(null,null,200,null,null);
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setNavBarHeight(200);
+        metadata = new Metadata(options);
         assertEquals(metadata.navBarHeight().intValue(), 200);
     }
 
@@ -91,7 +90,9 @@ public class MetadataTest {
 
     @Test
     public void testDeviceNameExternallyProvided() {
-        metadata = new Metadata("Device",null,null,null,null);
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setDeviceName("Device");
+        metadata = new Metadata(options);
         assertEquals(metadata.deviceName(), "Device");
     }
 }

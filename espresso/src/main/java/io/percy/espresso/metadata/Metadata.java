@@ -1,40 +1,56 @@
 package io.percy.espresso.metadata;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
+import android.provider.Settings;
+
+import io.percy.espresso.lib.ScreenshotOptions;
 
 public class Metadata {
 
-    private final String platformVersion;
     private final Integer statusBar;
     private final Integer navBar;
     private final String deviceName;
+    private final String orientation;
 
-    public Metadata(String deviceName, Integer statusBar, Integer navBar, String orientation,
-            String platformVersion) {
-        this.platformVersion = platformVersion;
-        this.statusBar = statusBar;
-        this.navBar = navBar;
-        this.deviceName = deviceName;
+    public Metadata(ScreenshotOptions options) {
+        this.statusBar = options.getStatusBarHeight();
+        this.navBar = options.getNavBarHeight();
+        this.deviceName = options.getDeviceName();
+        this.orientation = options.getOrientation();
     }
 
     public String osName() {
-       return "Android";
+        return "Android";
     }
 
     public String platformVersion() {
-        if (platformVersion != null) {
-            return platformVersion;
-        }
         return Build.VERSION.RELEASE;
     }
 
     public String orientation() {
-        Integer orientation = Resources.getSystem().getConfiguration().orientation;
-        if (orientation == 1) {
-            return "portrait";
+        if (orientation != null) {
+            if (orientation.toLowerCase().equals("portrait") || orientation.toLowerCase().equals("landscape")) {
+                return orientation.toLowerCase();
+            } else if (orientation.toLowerCase().equals("auto")) {
+                Integer orientationInteger = Resources.getSystem().getConfiguration().orientation;
+                if (orientationInteger == 1) {
+                    return "portrait";
+                }
+                return "landscape";
+            } else {
+                return "portrait";
+            }
+        } else {
+            Integer orientationInteger = Resources.getSystem().getConfiguration().orientation;
+            if (orientationInteger == 1) {
+                return "portrait";
+            }
+            return "landscape";
         }
-        return "landscape";
     }
 
     public String getDeviceName() {
@@ -61,7 +77,7 @@ public class Metadata {
         if (statusBar != null) {
             return statusBar;
         }
-        Integer idStatusBarHeight = Resources.getSystem().getIdentifier( "status_bar_height", "dimen", "android");
+        Integer idStatusBarHeight = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
         return Resources.getSystem().getDimensionPixelSize(idStatusBarHeight);
     }
 
@@ -69,7 +85,7 @@ public class Metadata {
         if (navBar != null) {
             return navBar;
         }
-        Integer navBarHeight = Resources.getSystem().getIdentifier( "navigation_bar_height", "dimen", "android");
+        Integer navBarHeight = Resources.getSystem().getIdentifier("navigation_bar_height", "dimen", "android");
         return Resources.getSystem().getDimensionPixelSize(navBarHeight);
     }
 
@@ -78,7 +94,6 @@ public class Metadata {
         if (deviceName != null) {
             return deviceName;
         }
-
         String manufacturer = Build.MANUFACTURER;
         String model = Build.MODEL;
         if (model.startsWith(manufacturer)) {

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import io.percy.espresso.AppPercy;
+import io.percy.espresso.lib.ScreenshotOptions;
 import io.percy.espresso.lib.Tile;
 import io.percy.espresso.metadata.Metadata;
 import io.percy.espresso.providers.GenericProvider;
@@ -29,7 +30,7 @@ public class GenericProviderTest {
     @Test
     public void testGetTag() throws JSONException {
         GenericProvider genericProvider = new GenericProvider();
-        genericProvider.setMetadata(new Metadata(null,null, null, null, null));
+        genericProvider.setMetadata(new Metadata(new ScreenshotOptions()));
 
         Metadata metadata = genericProvider.getMetadata();
         JSONObject tile = genericProvider.getTag();
@@ -42,9 +43,12 @@ public class GenericProviderTest {
     }
 
     @Test
-    public void testcaptureTiles() throws IOException, Exception {
+    public void testcaptureTiles() {
         GenericProvider genericProvider = new GenericProvider();
-        genericProvider.setMetadata(new Metadata(null, 100, 200, null, null));
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setNavBarHeight(200);
+        options.setStatusBarHeight(100);
+        genericProvider.setMetadata(new Metadata(options));
 
         Tile tile = genericProvider.captureTiles(false).get(0);
         Assert.assertEquals(tile.getStatusBarHeight().intValue(), 100);
@@ -55,14 +59,19 @@ public class GenericProviderTest {
     }
 
     @Test
-    public void testScreenshot() throws IOException, NoSuchAlgorithmException {
+    public void testScreenshot() {
         GenericProvider genericProvider = new GenericProvider();
-        genericProvider.screenshot("First SS", "Device", 120, 100, "portrait", false);
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setNavBarHeight(200);
+        options.setStatusBarHeight(100);
+        genericProvider.screenshot("First SS", options);
     }
 
     @Test
     public void testGetSetMetadata() {
-        Metadata metadata = new Metadata("Device", null, null, null, null);
+        ScreenshotOptions options = new ScreenshotOptions();
+        options.setDeviceName("Device");
+        Metadata metadata = new Metadata(options);
         GenericProvider genericProvider = new GenericProvider();
         genericProvider.setMetadata(metadata);
         Assert.assertEquals(genericProvider.getMetadata(), metadata);

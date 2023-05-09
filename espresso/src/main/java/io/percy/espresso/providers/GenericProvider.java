@@ -12,6 +12,7 @@ import android.util.Base64;
 import androidx.test.runner.screenshot.Screenshot;
 
 import io.percy.espresso.lib.CliWrapper;
+import io.percy.espresso.lib.ScreenshotOptions;
 import io.percy.espresso.lib.Tile;
 import io.percy.espresso.metadata.Metadata;
 
@@ -41,9 +42,9 @@ public class GenericProvider {
     public List<Tile> captureTiles(Boolean fullScreen) {
         Integer statusBar = metadata.statBarHeight();
         Integer navBar = metadata.navBarHeight();
-        Bitmap b = Screenshot.capture().getBitmap();
+        Bitmap bitmap = Screenshot.capture().getBitmap();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        b.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         String content = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
 
         Integer headerHeight = 0;
@@ -61,17 +62,11 @@ public class GenericProvider {
         return metadata;
     }
 
-    public String screenshot(String name, String deviceName, Integer statusBarHeight, Integer navBarHeight,
-                             String orientation, Boolean fullScreen) {
-        return screenshot(name, deviceName, statusBarHeight, navBarHeight, orientation, fullScreen, null);
-    }
+    public String screenshot(String name, ScreenshotOptions options) {
 
-    public String screenshot(String name, String deviceName, Integer statusBarHeight, Integer navBarHeight,
-                             String orientation, Boolean fullScreen, String platformVersion) {
-
-        this.metadata = new Metadata(deviceName, statusBarHeight, navBarHeight, orientation, platformVersion);
+        this.metadata = new Metadata(options);
         JSONObject tag = getTag();
-        List<Tile> tiles = captureTiles(fullScreen);
+        List<Tile> tiles = captureTiles(options.getFullScreen());
         return cliWrapper.postScreenshot(name, tag, tiles, null);
     }
 }

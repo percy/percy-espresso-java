@@ -1,6 +1,8 @@
 package com.percy.espresso_java;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -10,13 +12,19 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 
 import net.minidev.json.JSONObject;
 
+import org.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.percy.espresso.AppPercy;
+import io.percy.espresso.Environment;
 import io.percy.espresso.lib.CliWrapper;
+import io.percy.espresso.lib.ScreenshotOptions;
+import io.percy.espresso.lib.Tile;
+import io.percy.espresso.metadata.Metadata;
+import io.percy.espresso.providers.GenericProvider;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -27,10 +35,14 @@ import io.percy.espresso.lib.CliWrapper;
 public class AppPercyTest {
 
     WireMockServer server = new WireMockServer(5338);
+    GenericProvider genericProvider = new GenericProvider();
+
+    Environment environment = new Environment();
 
     @Before
     public void setup() {
         CliWrapper.PERCY_SERVER_ADDRESS = "http://127.0.0.1:5338";
+        genericProvider.setMetadata(new Metadata(new ScreenshotOptions()));
         ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();
         mockResponse.withHeader("x-percy-core-version", "1.2");
         mockResponse.withStatus(200);
@@ -40,13 +52,19 @@ public class AppPercyTest {
                 WireMock.get("/percy/healthcheck")
                         .willReturn(mockResponse)
         );
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("link", "dummy");
+        JSONObject responseJsonObject = new JSONObject();
+        responseJsonObject.put("link", "dummy");
+
         WireMock.stubFor(
                 WireMock.post("/percy/comparison")
+                        .withRequestBody(matchingJsonPath("$.name"))
+                        .withRequestBody(matchingJsonPath("$.tag"))
+                        .withRequestBody(matchingJsonPath("$.tiles"))
+                        .withRequestBody(matchingJsonPath("$.clientInfo"))
+                        .withRequestBody(matchingJsonPath("$.environmentInfo"))
                         .willReturn(aResponse()
                                 .withStatus(200)
-                                .withBody(String.valueOf(jsonObject))
+                                .withBody(String.valueOf(responseJsonObject))
                         )
         );
     }

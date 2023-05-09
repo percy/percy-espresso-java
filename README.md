@@ -17,13 +17,12 @@ import io.percy.espresso.AppPercy;
 
 AppPercy percy = new AppPercy();
 percy.screenshot("Screenshot");
-
 ```
 
 ## Configuration
 
 ```java
-ScreenshotOptions options = new ScreenshotOptions()
+ScreenshotOptions options = new ScreenshotOptions();
 percy.screenshot("Screenshot", options);
 ```
 

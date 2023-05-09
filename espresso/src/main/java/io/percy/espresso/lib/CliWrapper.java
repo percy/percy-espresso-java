@@ -16,7 +16,6 @@ import io.percy.espresso.AppPercy;
 import io.percy.espresso.Environment;
 
 public class CliWrapper {
-    // Maybe get the CLI server address
     public static String PERCY_SERVER_ADDRESS = "http://percy.cli:5338";
 
     // Environment information like Framework & SDK versions

@@ -13,7 +13,8 @@ public class AppPercy {
     /**
      * Determine if we're debug logging
      */
-    private static boolean PERCY_DEBUG = System.getenv().getOrDefault("PERCY_LOGLEVEL", "info").equals("debug");
+    public static String PERCY_LOGLEVEL = "info";
+    private static boolean PERCY_DEBUG = PERCY_LOGLEVEL.equals("debug");
 
     /**
      * for logging
@@ -42,7 +43,7 @@ public class AppPercy {
      *
      */
     public void screenshot(String name) {
-        screenshot(name, false, null);
+        screenshot(name, null);
     }
 
     /**
@@ -50,44 +51,18 @@ public class AppPercy {
      *
      * @param name       The human-readable name of the screenshot. Should be
      *                   unique.
-     * @param fullScreen It indicates if the app is a full screen
-     */
-    public void screenshot(String name, Boolean fullScreen) {
-        screenshot(name, fullScreen, null);
-    }
-
-    /**
-     * Take a screenshot and upload it to Percy.
-     *
-     * @param name    The human-readable name of the screenshot. Should be
-     *                unique.
-     * @param options Optional screenshot params
-     */
-    public void screenshot(String name, ScreenshotOptions options) {
-        screenshot(name, false, options);
-    }
-
-    /**
-     * Take a screenshot and upload it to Percy.
-     *
-     * @param name       The human-readable name of the screenshot. Should be
-     *                   unique.
-     * @param fullScreen It indicates if the app is a full screen
      * @param options    Optional screenshot params
      */
-    public void screenshot(String name, Boolean fullScreen, ScreenshotOptions options) {
+    public void screenshot(String name, ScreenshotOptions options) {
         if (!isPercyEnabled) {
             return;
         }
         try {
             GenericProvider provider = new GenericProvider();
-            if (options != null) {
-                provider.screenshot(name, options.getDeviceName(), options.getStatusBarHeight(),
-                        options.getNavBarHeight(), options.getOrientation(), fullScreen);
-            } else {
-                provider.screenshot(name, null, null, null, null,
-                        fullScreen);
+            if (options == null) {
+                options = new ScreenshotOptions();
             }
+            provider.screenshot(name, options);
         } catch (Exception e) {
             log("Error taking screenshot " + name);
             log(e.toString(), "debug");
