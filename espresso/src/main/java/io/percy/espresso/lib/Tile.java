@@ -25,20 +25,16 @@ public class Tile {
         this.fullScreen = fullScreen;
     }
 
-    public static List<JSONObject> getTilesAsJson(List<Tile> tilesList) {
+    public static List<JSONObject> getTilesAsJson(List<Tile> tilesList) throws JSONException {
         List<JSONObject> tiles = new ArrayList<JSONObject>();
         for (Tile tile : tilesList) {
             JSONObject tileData = new JSONObject();
-            try {
-                tileData.put("content", tile.content);
-                tileData.put("statusBarHeight", tile.statusBarHeight);
-                tileData.put("navBarHeight", tile.navBarHeight);
-                tileData.put("headerHeight", tile.headerHeight);
-                tileData.put("footerHeight", tile.footerHeight);
-                tileData.put("fullscreen", tile.fullScreen);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            tileData.put("content", tile.content);
+            tileData.put("statusBarHeight", tile.statusBarHeight);
+            tileData.put("navBarHeight", tile.navBarHeight);
+            tileData.put("headerHeight", tile.headerHeight);
+            tileData.put("footerHeight", tile.footerHeight);
+            tileData.put("fullscreen", tile.fullScreen);
             tiles.add(tileData);
         }
         return tiles;

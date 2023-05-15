@@ -26,14 +26,11 @@ public class AppPercy {
      */
     private boolean isPercyEnabled;
 
-    private String sessionId;
-
     public static Boolean ignoreErrors = true;
 
     public AppPercy() {
         this.cliWrapper = new CliWrapper();
         this.isPercyEnabled = cliWrapper.healthcheck();
-        this.sessionId = "123";
     }
 
     /**
