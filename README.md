@@ -12,18 +12,31 @@ Add library to your gradle file:
 
 This is an example test using the `percyScreenshot` function.
 
+Java
 ```java
 import io.percy.espresso.AppPercy;
-
 AppPercy percy = new AppPercy();
 percy.screenshot("Screenshot");
+```
+Kotlin
+```kotlin
+import io.percy.espresso.AppPercy
+val percy = AppPercy()
+percy.screenshot("Screenshot")
 ```
 
 ## Configuration
 
+Java
 ```java
 ScreenshotOptions options = new ScreenshotOptions();
 percy.screenshot("Screenshot", options);
+```
+
+Kotlin
+```kotlin
+val options = ScreenshotOptions()
+percy.screenshot("Screenshot", options)
 ```
 
 - `name` (**required**) - The screenshot name; must be unique to each screenshot
