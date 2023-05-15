@@ -1,7 +1,6 @@
 package com.percy.espresso_java;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -12,7 +11,7 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 
 import net.minidev.json.JSONObject;
 
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +21,6 @@ import io.percy.espresso.AppPercy;
 import io.percy.espresso.Environment;
 import io.percy.espresso.lib.CliWrapper;
 import io.percy.espresso.lib.ScreenshotOptions;
-import io.percy.espresso.lib.Tile;
 import io.percy.espresso.metadata.Metadata;
 import io.percy.espresso.providers.GenericProvider;
 
@@ -40,7 +38,7 @@ public class AppPercyTest {
     Environment environment = new Environment();
 
     @Before
-    public void setup() {
+    public void setup() throws JSONException {
         CliWrapper.PERCY_SERVER_ADDRESS = "http://127.0.0.1:5338";
         genericProvider.setMetadata(new Metadata(new ScreenshotOptions()));
         ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();

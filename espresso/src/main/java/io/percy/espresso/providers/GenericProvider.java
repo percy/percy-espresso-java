@@ -24,18 +24,14 @@ public class GenericProvider {
         this.cliWrapper = new CliWrapper();
     }
 
-    public JSONObject getTag() {
+    public JSONObject getTag() throws JSONException {
         JSONObject tag = new JSONObject();
-        try {
-            tag.put("name", metadata.deviceName());
-            tag.put("osName", metadata.osName());
-            tag.put("osVersion", metadata.platformVersion());
-            tag.put("width", metadata.deviceScreenWidth());
-            tag.put("height", metadata.deviceScreenHeight());
-            tag.put("orientation", metadata.orientation());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        tag.put("name", metadata.deviceName());
+        tag.put("osName", metadata.osName());
+        tag.put("osVersion", metadata.platformVersion());
+        tag.put("width", metadata.deviceScreenWidth());
+        tag.put("height", metadata.deviceScreenHeight());
+        tag.put("orientation", metadata.orientation());
         return tag;
     }
 
@@ -62,7 +58,7 @@ public class GenericProvider {
         return metadata;
     }
 
-    public String screenshot(String name, ScreenshotOptions options) {
+    public String screenshot(String name, ScreenshotOptions options) throws JSONException {
 
         this.metadata = new Metadata(options);
         JSONObject tag = getTag();

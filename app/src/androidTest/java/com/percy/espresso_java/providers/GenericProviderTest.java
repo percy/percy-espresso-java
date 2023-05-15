@@ -59,7 +59,7 @@ public class GenericProviderTest {
     }
 
     @Test
-    public void testScreenshot() {
+    public void testScreenshot() throws JSONException {
         GenericProvider genericProvider = new GenericProvider();
         ScreenshotOptions options = new ScreenshotOptions();
         options.setNavBarHeight(200);
