@@ -1,11 +1,7 @@
 package io.percy.espresso.metadata;
 
-import android.Manifest;
-import android.bluetooth.BluetoothAdapter;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
-import android.provider.Settings;
 
 import io.percy.espresso.lib.ScreenshotOptions;
 
@@ -53,18 +49,6 @@ public class Metadata {
         }
     }
 
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public Integer getNavBar() {
-        return navBar;
-    }
-
-    public Integer getStatusBar() {
-        return statusBar;
-    }
-
     public Integer deviceScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
@@ -90,7 +74,6 @@ public class Metadata {
     }
 
     public String deviceName() {
-        String deviceName = getDeviceName();
         if (deviceName != null) {
             return deviceName;
         }

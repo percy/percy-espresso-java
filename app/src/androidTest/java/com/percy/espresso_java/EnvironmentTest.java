@@ -26,7 +26,7 @@ public class EnvironmentTest {
 
     @Test
     public void testGetClientInfo() {
-        Assert.assertEquals(environment.getClientInfo(), "percy-espresso-java/" + Environment.SDK_VERSION);
+        Assert.assertEquals(environment.getClientInfo(), "espresso-java/" + Environment.SDK_VERSION);
     }
 
     @Test

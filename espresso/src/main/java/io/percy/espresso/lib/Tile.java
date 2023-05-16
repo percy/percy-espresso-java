@@ -40,10 +40,6 @@ public class Tile {
         return tiles;
     }
 
-    public String getContent() {
-        return content;
-    }
-
     public Integer getStatusBarHeight() {
         return statusBarHeight;
     }
