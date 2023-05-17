@@ -1,7 +1,5 @@
 package com.percy.espresso_java.providers;
 
-import static org.junit.Assert.assertEquals;
-
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.json.JSONException;
@@ -10,10 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-
-import io.percy.espresso.AppPercy;
 import io.percy.espresso.lib.ScreenshotOptions;
 import io.percy.espresso.lib.Tile;
 import io.percy.espresso.metadata.Metadata;
@@ -34,7 +28,6 @@ public class GenericProviderTest {
 
         Metadata metadata = genericProvider.getMetadata();
         JSONObject tile = genericProvider.getTag();
-        Assert.assertEquals(tile.get("name"), metadata.deviceName());
         Assert.assertEquals(tile.get("osName"), metadata.osName());
         Assert.assertEquals(tile.get("osVersion"), metadata.platformVersion());
         Assert.assertEquals(tile.get("width"), metadata.deviceScreenWidth());

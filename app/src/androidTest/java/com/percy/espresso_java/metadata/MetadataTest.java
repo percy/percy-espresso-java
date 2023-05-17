@@ -84,11 +84,6 @@ public class MetadataTest {
     }
 
     @Test
-    public void testDeviceName() {
-        assertEquals(metadata.deviceName(), Build.MANUFACTURER + " " + Build.MODEL);
-    }
-
-    @Test
     public void testDeviceNameExternallyProvided() {
         ScreenshotOptions options = new ScreenshotOptions();
         options.setDeviceName("Device");

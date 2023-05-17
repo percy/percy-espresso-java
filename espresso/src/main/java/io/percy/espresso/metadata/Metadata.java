@@ -3,6 +3,7 @@ package io.percy.espresso.metadata;
 import android.content.res.Resources;
 import android.os.Build;
 
+import io.percy.espresso.lib.Cache;
 import io.percy.espresso.lib.ScreenshotOptions;
 
 public class Metadata {
@@ -77,14 +78,10 @@ public class Metadata {
         if (deviceName != null) {
             return deviceName;
         }
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        if (model.startsWith(manufacturer)) {
-           return model;
-        } else {
-           return manufacturer + " " + model;
+        if (Cache.CACHE_MAP.get("deviceName") == null) {
+            String deviceName = MetadataHelper.deviceNameFromCSV();
+            Cache.CACHE_MAP.put("deviceName", deviceName);
         }
+        return (String) Cache.CACHE_MAP.get("deviceName");
     }
-
-
-}
+ }
