@@ -8,6 +8,16 @@ Add library to your gradle file:
   androidTestImplementation "io.percy:espresso-java:1.0.0"
 ```
 
+Update app manifest:
+- Add internet permission
+  ```
+    <uses-permission android:name="android.permission.INTERNET" />
+  ```
+- Add usesCleartextTraffic attribute
+  ```
+    <application android:usesCleartextTraffic="true">
+  ```
+
 ## Usage
 
 This is an example test using the `percyScreenshot` function.
