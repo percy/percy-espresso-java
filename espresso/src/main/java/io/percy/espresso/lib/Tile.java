@@ -7,7 +7,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Tile {
-    // File path where screenshot is stored
     private String content;
     private Integer statusBarHeight;
     private Integer navBarHeight;
