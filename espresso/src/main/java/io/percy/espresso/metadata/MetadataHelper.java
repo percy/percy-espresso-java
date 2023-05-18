@@ -33,7 +33,7 @@ public class MetadataHelper {
     }
 
     public static String sanitizedString(String string) {
-        return string.replaceAll("[^ a-zA-Z0-9_+-]", "").trim();
+        return string.replaceAll("[^ a-zA-Z0-9()._+-]", "").trim();
     }
 
     public static String parseBufferReader(BufferedReader reader, String model) {
@@ -57,6 +57,6 @@ public class MetadataHelper {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return Build.MANUFACTURER + " " + Build.MODEL;
     }
 }
