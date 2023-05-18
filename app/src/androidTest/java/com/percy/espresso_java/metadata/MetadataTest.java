@@ -43,6 +43,11 @@ public class MetadataTest {
     }
 
     @Test
+    public void testDeviceName() {
+        assertEquals(metadata.deviceName(), Build.MANUFACTURER + " " + Build.MODEL);
+    }
+
+    @Test
     public void testPlatformVersion() {
         assertEquals(metadata.platformVersion(), Build.VERSION.RELEASE);
     }
