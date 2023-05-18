@@ -59,7 +59,6 @@ public class GenericProvider {
     }
 
     public String screenshot(String name, ScreenshotOptions options) throws JSONException {
-
         this.metadata = new Metadata(options);
         JSONObject tag = getTag();
         List<Tile> tiles = captureTiles(options.getFullScreen());
