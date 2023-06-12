@@ -1,7 +1,7 @@
 package io.percy.espresso;
 
 public class Environment {
-    public static final String SDK_VERSION = "1.0.0";
+    public static final String SDK_VERSION = "1.0.1";
     private static final String SDK_NAME = "espresso-java";
 
     public String getClientInfo() {
