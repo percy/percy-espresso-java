@@ -18,7 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.percy.espresso.AppPercy;
-import io.percy.espresso.Environment;
 import io.percy.espresso.lib.CliWrapper;
 import io.percy.espresso.lib.ScreenshotOptions;
 import io.percy.espresso.metadata.Metadata;
@@ -35,14 +34,12 @@ public class AppPercyTest {
     WireMockServer server = new WireMockServer(5338);
     GenericProvider genericProvider = new GenericProvider();
 
-    Environment environment = new Environment();
-
     @Before
     public void setup() throws JSONException {
         CliWrapper.PERCY_SERVER_ADDRESS = "http://127.0.0.1:5338";
         genericProvider.setMetadata(new Metadata(new ScreenshotOptions()));
         ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();
-        mockResponse.withHeader("x-percy-core-version", "1.2");
+        mockResponse.withHeader("x-percy-core-version", "1.23.0");
         mockResponse.withStatus(200);
         server.start();
         WireMock.configureFor("127.0.0.1", 5338);

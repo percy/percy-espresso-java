@@ -39,13 +39,22 @@ public class CliWrapper {
             if (responseCode < 200 || responseCode >= 300) {
                 throw new IOException("Unexpected response code for health check: " + responseCode);
             }
-            // success
-            String version = con.getHeaderField("x-percy-core-version");
 
-            if (!version.split("\\.")[0].equals("1")) {
+            String version = con.getHeaderField("x-percy-core-version");
+            Integer majorVersion = Integer.parseInt(version.split("\\.")[0]);
+            Integer minorVersion = Integer.parseInt(version.split("\\.")[1]);
+            Integer revision = Integer.parseInt(version.split("\\.")[2]);
+
+            if (majorVersion < 1) {
                 AppPercy.log("Unsupported Percy CLI version, " + version);
                 return false;
+            } else {
+                if (minorVersion < 24 && revision < 1) {
+                    AppPercy.log("Percy CLI version, " + version
+                        + " is not the minimum version required, some features might not work as expected.");
+                }
             }
+
             return true;
         } catch (Exception e) {
             AppPercy.log("Percy is not running, disabling screenshots");
