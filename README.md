@@ -5,7 +5,7 @@
 Add library to your gradle file:
 
 ```sh-session
-  androidTestImplementation "io.percy:espresso-java:1.0.1"
+  androidTestImplementation "io.percy:espresso-java:1.0.2"
 ```
 
 Update app manifest:

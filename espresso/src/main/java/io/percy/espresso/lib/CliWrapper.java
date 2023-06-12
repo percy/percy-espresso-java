@@ -43,13 +43,12 @@ public class CliWrapper {
             String version = con.getHeaderField("x-percy-core-version");
             Integer majorVersion = Integer.parseInt(version.split("\\.")[0]);
             Integer minorVersion = Integer.parseInt(version.split("\\.")[1]);
-            Integer revision = Integer.parseInt(version.split("\\.")[2]);
 
             if (majorVersion < 1) {
                 AppPercy.log("Unsupported Percy CLI version, " + version);
                 return false;
             } else {
-                if (minorVersion < 24 && revision < 1) {
+                if (minorVersion < 24) {
                     AppPercy.log("Percy CLI version, " + version
                         + " is not the minimum version required, some features might not work as expected.");
                 }
