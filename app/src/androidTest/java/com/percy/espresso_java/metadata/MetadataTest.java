@@ -59,7 +59,7 @@ public class MetadataTest {
 
     @Test
     public void testDeviceScreenHeight() {
-        assertEquals(metadata.deviceScreenHeight().intValue(), Resources.getSystem().getDisplayMetrics().heightPixels);
+        assertEquals(metadata.deviceScreenHeight().intValue(), Resources.getSystem().getDisplayMetrics().heightPixels + metadata.navBarHeight().intValue() +  metadata.statBarHeight().intValue());
     }
 
     @Test
