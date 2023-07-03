@@ -37,13 +37,13 @@ public class MetadataHelperTest {
     public void testValueFromStaticDevicesInfoWhenPresent() {
         Integer val = MetadataHelper.valueFromStaticDevicesInfo("statusBarHeight", 
             MetadataHelper.deviceNameFromCSV("SM-A115M").toLowerCase());
-        assertEquals(val, 65);
+        assertEquals(val.intValue(), 65);
     }
 
     @Test
     public void testValueFromStaticDevicesInfoWhenNotPresent() {
         Integer val = MetadataHelper.valueFromStaticDevicesInfo("statusBarHeight", 
             MetadataHelper.deviceNameFromCSV("22041216UC").toLowerCase());
-        assertEquals(val, 0);
+        assertEquals(val.intValue(), 0);
     }
 }

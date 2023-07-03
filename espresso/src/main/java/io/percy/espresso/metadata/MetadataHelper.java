@@ -70,12 +70,12 @@ public class MetadataHelper {
         try {
             JSONObject object = getDevicesJson().getJSONObject(deviceName);
             return object.getInt(key);
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             return 0;
         }
     }
 
-    public static JSONObject getDevicesJson() {
+    public static JSONObject getDevicesJson() throws IOException, JSONException {
         if (Cache.CACHE_MAP.get("getDevicesJson") == null) {
             InputStream inputStream = MetadataHelper.class.getResourceAsStream("/deviceInfo.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

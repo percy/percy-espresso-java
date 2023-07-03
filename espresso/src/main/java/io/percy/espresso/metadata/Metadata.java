@@ -58,8 +58,9 @@ public class Metadata {
         Integer deviceScreenHeight = MetadataHelper.valueFromStaticDevicesInfo("deviceHeight",
                 this.deviceName().toLowerCase());
         if (deviceScreenHeight == 0) {
-            // We have seen that for older device the height = viewport + nav_bar
-            return Resources.getSystem().getDisplayMetrics().heightPixels + this.navBarHeight(); 
+            // We have seen that for device
+            // height = viewport + nav_bar + status_bar
+            return Resources.getSystem().getDisplayMetrics().heightPixels + this.navBarHeight() + this.statBarHeight();
         }
         return deviceScreenHeight;
     }
@@ -72,7 +73,7 @@ public class Metadata {
                 this.deviceName().toLowerCase());
         if (calStatusBarHeight == 0) {
             Integer idStatusBarHeight = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
-            return Resources.getSystem().getDimensionPixelSize(idStatusBarHeight); 
+            return Resources.getSystem().getDimensionPixelSize(idStatusBarHeight);
         }
         return calStatusBarHeight;
     }
@@ -100,4 +101,4 @@ public class Metadata {
         }
         return (String) Cache.CACHE_MAP.get("deviceName");
     }
- }
+}
