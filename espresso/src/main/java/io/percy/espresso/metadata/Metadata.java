@@ -55,23 +55,39 @@ public class Metadata {
     }
 
     public Integer deviceScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
+        Integer deviceScreenHeight = MetadataHelper.valueFromStaticDevicesInfo("deviceHeight",
+                this.deviceName().toLowerCase());
+        if (deviceScreenHeight == 0) {
+            // We have seen that for older device the height = viewport + nav_bar
+            return Resources.getSystem().getDisplayMetrics().heightPixels + this.navBarHeight(); 
+        }
+        return deviceScreenHeight;
     }
 
     public Integer statBarHeight() {
         if (statusBar != null) {
             return statusBar;
         }
-        Integer idStatusBarHeight = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
-        return Resources.getSystem().getDimensionPixelSize(idStatusBarHeight);
+        Integer calStatusBarHeight = MetadataHelper.valueFromStaticDevicesInfo("statusBarHeight",
+                this.deviceName().toLowerCase());
+        if (calStatusBarHeight == 0) {
+            Integer idStatusBarHeight = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
+            return Resources.getSystem().getDimensionPixelSize(idStatusBarHeight); 
+        }
+        return calStatusBarHeight;
     }
 
     public Integer navBarHeight() {
         if (navBar != null) {
             return navBar;
         }
-        Integer navBarHeight = Resources.getSystem().getIdentifier("navigation_bar_height", "dimen", "android");
-        return Resources.getSystem().getDimensionPixelSize(navBarHeight);
+        Integer calNavBarHeight = MetadataHelper.valueFromStaticDevicesInfo("navBarHeight",
+                this.deviceName().toLowerCase());
+        if (calNavBarHeight == 0) {
+            Integer navBarHeight = Resources.getSystem().getIdentifier("navigation_bar_height", "dimen", "android");
+            return Resources.getSystem().getDimensionPixelSize(navBarHeight);
+        }
+        return calNavBarHeight;
     }
 
     public String deviceName() {

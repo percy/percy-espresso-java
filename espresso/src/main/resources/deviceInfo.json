@@ -1,0 +1,374 @@
+{
+  "redmi 10x 4g": {
+    "statusBarHeight": 100
+  },
+  "oppo a78 5g": {
+    "statusBarHeight": 64,
+    "navBarHeight": 88,
+    "deviceHeight": 1612
+  },
+  "samsung galaxy tab s8 5g": {
+    "statusBarHeight": 51,
+    "navBarHeight": 102,
+    "deviceHeight": 1600
+  },
+  "vivo vivo y22": {
+    "statusBarHeight": 60,
+    "navBarHeight": 79,
+    "deviceHeight": 1612
+  },
+  "samsung galaxy s22": {
+    "statusBarHeight": 81,
+    "navBarHeight": 144,
+    "deviceHeight": 2340
+  },
+  "google pixel 3": {
+    "statusBarHeight": 66
+  },
+  "google pixel 3a": {
+    "statusBarHeight": 66
+  },
+  "samsung galaxy s21 5g": {
+    "statusBarHeight": 80,
+    "navBarHeight": 144,
+    "deviceHeight": 2400
+  },
+  "google pixel 6 pro": {
+    "statusBarHeight": 145,
+    "navBarHeight": 56,
+    "deviceHeight": 3120
+  },
+  "samsung galaxy s10": {
+    "statusBarHeight": 112,
+    "navBarHeight": 126,
+    "deviceHeight": 2280
+  },
+  "oneplus6t": {
+    "statusBarHeight": 80
+  },
+  "google pixel 6": {
+    "statusBarHeight": 124,
+    "navBarHeight": 42,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy note20 ultra 5g": {
+    "statusBarHeight": 92,
+    "navBarHeight": 135,
+    "deviceHeight": 2400
+  },
+  "google pixel 3 xl": {
+    "statusBarHeight": 171
+  },
+  "oneplus 7": {
+    "statusBarHeight": 80
+  },
+  "oppo reno3 pro": {
+    "statusBarHeight": 110
+  },
+  "samsung galaxy s23 ultra": {
+    "statusBarHeight": 75,
+    "navBarHeight": 135,
+    "deviceHeight": 2316
+  },
+  "realme  8": {
+    "statusBarHeight": 110,
+    "navBarHeight": 132,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy note10": {
+    "statusBarHeight": 90,
+    "navBarHeight": 126,
+    "deviceHeight": 90
+  },
+  "huawei huawei p30": {
+    "statusBarHeight": 75
+  },
+  "samsung galaxy tab s5e": {
+    "statusBarHeight": 54,
+    "navBarHeight": 108,
+    "deviceHeight": 2560
+  },
+  "samsung galaxy a10": {
+    "statusBarHeight": 54
+  },
+  "samsung galaxy s20 ultra 5g": {
+    "statusBarHeight": 74,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy s9+": {
+    "statusBarHeight": 63,
+    "deviceHeight": 2200
+  },
+  "oneplus 7t": {
+    "statusBarHeight": 80
+  },
+  "samsung galaxy s10e": {
+    "statusBarHeight": 117
+  },
+  "google pixel 3a xl": {
+    "statusBarHeight": 60
+  },
+  "google pixel 4": {
+    "statusBarHeight": 83,
+    "navBarHeight": 44,
+    "deviceHeight": 2280
+  },
+  "samsung galaxy note10+ 5g": {
+    "statusBarHeight": 85
+  },
+  "google pixel 7 pro": {
+    "statusBarHeight": 98,
+    "navBarHeight": 63,
+    "deviceHeight": 2340
+  },
+  "samsung galaxy note20": {
+    "statusBarHeight": 92
+  },
+  "samsung galaxy s20 5g": {
+    "statusBarHeight": 78,
+    "navBarHeight": 144,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy s23": {
+    "statusBarHeight": 81,
+    "navBarHeight": 144,
+    "deviceHeight": 2340
+  },
+  "motorola moto g71 5g": {
+    "statusBarHeight": 100,
+    "navBarHeight": 126,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy a51": {
+    "statusBarHeight": 93
+  },
+  "google pixel 5": {
+    "statusBarHeight": 145,
+    "navBarHeight": 44,
+    "deviceHeight": 2340
+  },
+  "redmi note 11": {
+    "statusBarHeight": 93,
+    "navBarHeight": 130,
+    "deviceHeight": 2400
+  },
+  "google pixel 7": {
+    "statusBarHeight": 136,
+    "navBarHeight": 63,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy s22 ultra": {
+    "statusBarHeight": 75,
+    "navBarHeight": 135,
+    "deviceHeight": 2316
+  },
+  "samsung galaxy tab s6": {
+    "statusBarHeight": 54
+  },
+  "samsung galaxy s20": {
+    "statusBarHeight": 78,
+    "navBarHeight": 144,
+    "deviceHeight": 2400
+  },
+  "vivo vivo 1935": {
+    "statusBarHeight": 99
+  },
+  "xiaomi redmi note 5 pro": {
+    "statusBarHeight": 66
+  },
+  "vivo vivo 1901": {
+    "statusBarHeight": 56,
+    "navBarHeight": 84,
+    "deviceHeight": 1544
+  },
+  "vivo v2130": {
+    "statusBarHeight": 88,
+    "navBarHeight": 116,
+    "deviceHeight": 2400
+  },
+  "oneplus 9 5g": {
+    "statusBarHeight": 104,
+    "navBarHeight": 135,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy s21 ultra 5g": {
+    "statusBarHeight": 75,
+    "navBarHeight": 126,
+    "deviceHeight": 2400
+  },
+  "vivo v2040": {
+    "statusBarHeight": 88,
+    "navBarHeight": 116,
+    "deviceHeight": 2400
+  },
+  "vivo v2059": {
+    "statusBarHeight": 88,
+    "navBarHeight": 116,
+    "deviceHeight": 2400
+  },
+  "vivo vivo 1920": {
+    "statusBarHeight": 84,
+    "navBarHeight": 126,
+    "deviceHeight": 2340
+  },
+  "redmi  note  7": {
+    "statusBarHeight": 80
+  },
+  "samsung galaxy s8+": {
+    "statusBarHeight": 63
+  },
+  "oppo cph2251": {
+    "statusBarHeight": 115,
+    "navBarHeight": 132,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy s10+": {
+    "statusBarHeight": 110
+  },
+  "redmi note 12 pro 5g": {
+    "statusBarHeight": 94,
+    "navBarHeight": 130,
+    "deviceHeight": 2400
+  },
+  "oneplus nord": {
+    "statusBarHeight": 117
+  },
+  "oneplus nord ce 5g": {
+    "statusBarHeight": 115,
+    "navBarHeight": 132,
+    "deviceHeight": 2400
+  },
+  "oneplus 10t 5g": {
+    "statusBarHeight": 107,
+    "navBarHeight": 132,
+    "deviceHeight": 2412
+  },
+  "samsung galaxy a33 5g": {
+    "statusBarHeight": 80,
+    "navBarHeight": 135,
+    "deviceHeight": 2400
+  },
+  "oppo oppo reno7": {
+    "statusBarHeight": 107,
+    "navBarHeight": 132,
+    "deviceHeight": 2400
+  },
+  "oneplus nord ce 2 lite 5g": {
+    "statusBarHeight": 110,
+    "navBarHeight": 132,
+    "deviceHeight": 2412
+  },
+  "redmi note 8": {
+    "statusBarHeight": 80
+  },
+  "google pixel 6a": {
+    "statusBarHeight": 132,
+    "navBarHeight": 63,
+    "deviceHeight": 2400
+  },
+  "redmi note 10 pro": {
+    "statusBarHeight": 93,
+    "navBarHeight": 130,
+    "deviceHeight": 2400
+  },
+  "oppo cph2239": {
+    "statusBarHeight": 72,
+    "navBarHeight": 88,
+    "deviceHeight": 1600
+  },
+  "samsung galaxy m31": {
+    "statusBarHeight": 83,
+    "navBarHeight": 126,
+    "deviceHeight": 2340
+  },
+  "oneplus9r": {
+    "statusBarHeight": 103,
+    "navBarHeight": 132,
+    "deviceHeight": 2400
+  },
+  "oneplus 8": {
+    "statusBarHeight": 104
+  },
+  "samsung galaxy s22+": {
+    "statusBarHeight": 74,
+    "navBarHeight": 135,
+    "deviceHeight": 2340
+  },
+  "samsung galaxy a13": {
+    "statusBarHeight": 64,
+    "navBarHeight": 135,
+    "deviceHeight": 2408
+  },
+  "samsung galaxy m32 5g": {
+    "statusBarHeight": 45,
+    "navBarHeight": 90,
+    "deviceHeight": 1600
+  },
+  "samsung galaxy s21+ 5g": {
+    "statusBarHeight": 75,
+    "navBarHeight": 135,
+    "deviceHeight": 2400
+  },
+  "redmi note 10": {
+    "statusBarHeight": 93,
+    "navBarHeight": 130,
+    "deviceHeight": 2400
+  },
+  "redmi note 12 pro + 5g": {
+    "statusBarHeight": 94,
+    "navBarHeight": 130,
+    "deviceHeight": 2400
+  },
+  "xiaomi redmi  note  7 pro": {
+    "statusBarHeight": 80
+  },
+  "redmi note 9 pro max": {
+    "statusBarHeight": 102
+  },
+  "google pixel 2": {
+    "statusBarHeight": 63
+  },
+  "google pixel 4 xl": {
+    "statusBarHeight": 98
+  },
+  "motorola moto g(9) play": {
+    "statusBarHeight": 54
+  },
+  "samsung galaxy s20+ 5g": {
+    "statusBarHeight": 73
+  },
+  "samsung galaxy z fold4": {
+    "statusBarHeight": 87,
+    "navBarHeight": 126,
+    "deviceHeight": 2316
+  },
+  "samsung galaxy a52": {
+    "statusBarHeight": 88,
+    "navBarHeight": 126,
+    "deviceHeight": 2400
+  },
+  "vivo v2050": {
+    "statusBarHeight": 88,
+    "navBarHeight": 116,
+    "deviceHeight": 2404
+  },
+  "motorola moto g(7) play": {
+    "statusBarHeight": 72
+  },
+  "samsung galaxy a11": {
+    "statusBarHeight": 65
+  },
+  "samsung galaxy m52 5g": {
+    "statusBarHeight": 90,
+    "navBarHeight": 126,
+    "deviceHeight": 2400
+  },
+  "samsung galaxy tab s7": {
+    "statusBarHeight": 51
+  },
+  "vivo v2111": {
+    "statusBarHeight": 60,
+    "navBarHeight": 79,
+    "deviceHeight": 1600
+  }
+}

@@ -2,11 +2,17 @@ package io.percy.espresso.metadata;
 
 import android.os.Build;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+
+import io.percy.espresso.lib.Cache;
 
 public class MetadataHelper {
     public static String deviceNameFromCSV() {
@@ -58,5 +64,33 @@ public class MetadataHelper {
             throw new RuntimeException(e);
         }
         return Build.MANUFACTURER + " " + Build.MODEL;
+    }
+
+    public static Integer valueFromStaticDevicesInfo(String key, String deviceName) {
+        try {
+            JSONObject object = getDevicesJson().getJSONObject(deviceName);
+            return object.getInt(key);
+        } catch (JSONException e) {
+            return 0;
+        }
+    }
+
+    public static JSONObject getDevicesJson() {
+        if (Cache.CACHE_MAP.get("getDevicesJson") == null) {
+            InputStream inputStream = MetadataHelper.class.getResourceAsStream("/deviceInfo.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            StringBuilder jsonStringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonStringBuilder.append(line);
+            }
+
+            String jsonString = jsonStringBuilder.toString();
+            JSONTokener tokener = new JSONTokener(jsonString);
+            JSONObject devicesJsonObject = new JSONObject(tokener);
+            Cache.CACHE_MAP.put("getDevicesJson", devicesJsonObject);
+        }
+        return (JSONObject) Cache.CACHE_MAP.get("getDevicesJson");
     }
 }

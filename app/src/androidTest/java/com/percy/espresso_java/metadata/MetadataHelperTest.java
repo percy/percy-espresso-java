@@ -32,4 +32,18 @@ public class MetadataHelperTest {
         // marketing name
         assertEquals(MetadataHelper.deviceNameFromCSV("22041216UC"), "Redmi Note 11T Pro +");
     }
+
+    @Test
+    public void testValueFromStaticDevicesInfoWhenPresent() {
+        Integer val = MetadataHelper.valueFromStaticDevicesInfo("statusBarHeight", 
+            MetadataHelper.deviceNameFromCSV("SM-A115M").toLowerCase());
+        assertEquals(val, 65);
+    }
+
+    @Test
+    public void testValueFromStaticDevicesInfoWhenNotPresent() {
+        Integer val = MetadataHelper.valueFromStaticDevicesInfo("statusBarHeight", 
+            MetadataHelper.deviceNameFromCSV("22041216UC").toLowerCase());
+        assertEquals(val, 0);
+    }
 }
