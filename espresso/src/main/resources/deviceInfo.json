@@ -370,5 +370,10 @@
     "statusBarHeight": 60,
     "navBarHeight": 79,
     "deviceHeight": 1600
+  },
+  "oneplus 11r 5g": {
+    "statusBarHeight": 110,
+    "navBarHeight": 154,
+    "deviceHeight": 2772
   }
 }
