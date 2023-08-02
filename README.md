@@ -9,13 +9,22 @@ Add library to your gradle file:
 ```
 
 Update app manifest:
-- Add internet permission
+- Update app manifest to add internet permission
   ```
     <uses-permission android:name="android.permission.INTERNET" />
   ```
-- Add usesCleartextTraffic attribute
+
+- Add networkSecurityConfig
+  - Create a network_security_config.xml and add following:
   ```
-    <application android:usesCleartextTraffic="true">
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">percy.cli</domain>
+    </domain-config>
+  ```
+
+  - Update app manifest to add internet permission
+  ```
+    <application android:networkSecurityConfig="@xml/network_security_config">
   ```
 
 ## Usage
