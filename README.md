@@ -8,7 +8,6 @@ Add library to your gradle file:
   androidTestImplementation "io.percy:espresso-java:1.0.3"
 ```
 
-Update app manifest:
 - Update app manifest to add internet permission
   ```
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,7 +21,7 @@ Update app manifest:
     </domain-config>
   ```
 
-  - Update app manifest to add internet permission
+  - Update app manifest to add networkSecurityConfig permission
   ```
     <application android:networkSecurityConfig="@xml/network_security_config">
   ```
