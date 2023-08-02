@@ -20,7 +20,6 @@ Add library to your gradle file:
         <domain includeSubdomains="true">percy.cli</domain>
     </domain-config>
   ```
-
   - Update app manifest to add networkSecurityConfig permission
   ```
     <application android:networkSecurityConfig="@xml/network_security_config">
