@@ -51,8 +51,11 @@ percy.screenshot("Screenshot", options)
 
 - `name` (**required**) - The screenshot name; must be unique to each screenshot
 - `options object` (**optional**) 
-  - `fullscreen`: if the app is currently in fullscreen
-  - `deviceName`: custom device name to override SDK fetched name
-  - `orientation`: "portrait"/"landscape" tell SDK which orientation app is in [ Note: This is only for tagging purpose, does not change the orientation of the device ]
-  - `statusBarHeight`: In px if you want to override SDK
-  - `navigationBarHeight`: In px if you want to override SDK
+
+| Setter Method  | Description |
+| ------------- | ------------- |
+| setDeviceName(String deviceNameParam)  | Device name on which screenshot is taken  |
+| setStatusBarHeight(Integer statusBarHeightParam)  | Height of status bar for the device  |
+| setNavBarHeight(Integer navBarHeightParam)  | Height of navigation bar for the device  |
+| setOrientation(String orientationParam)  | ["portrait"/"landscape"] Orientation of the application [ Note: This is only for tagging purpose, does not change the orientation of the device ]  |
+| setFullScreen(Boolean fullScreenParam)  | Indicate whether app is full screen; boolean  |
