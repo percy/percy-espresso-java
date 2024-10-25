@@ -66,3 +66,5 @@ percy.screenshot("Screenshot", options)
 | setNavBarHeight(Integer navBarHeightParam)  | Height of navigation bar for the device  |
 | setOrientation(String orientationParam)  | ["portrait"/"landscape"] Orientation of the application [ Note: This is only for tagging purpose, does not change the orientation of the device ]  |
 | setFullScreen(Boolean fullScreenParam)  | Indicate whether app is full screen; boolean  |
+| setTestCase (String testaCaseParam)  | groups snapshot under a particular test case  |
+| setLabels (String labelsParam)  | adds label to the particular snapshot  |

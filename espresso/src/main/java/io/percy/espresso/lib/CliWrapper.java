@@ -69,7 +69,7 @@ public class CliWrapper {
      * @param name The human-readable name of the screenshot. Should be
      *             unique.
      */
-    public String postScreenshot(String name, JSONObject tag, List<Tile> tiles, String externalDebugUrl) {
+    public String postScreenshot(String name, JSONObject tag, List<Tile> tiles, String externalDebugUrl, String testCase, String labels) {
         try {
             JSONObject data = new JSONObject();
             data.put("name", name);
@@ -77,6 +77,8 @@ public class CliWrapper {
             data.put("tiles", new JSONArray(Tile.getTilesAsJson(tiles)));
             data.put("clientInfo", env.getClientInfo());
             data.put("externalDebugUrl", externalDebugUrl);
+            data.put("testCase", testCase);
+            data.put("labels", labels);
             data.put("environmentInfo", env.getEnvironmentInfo());
 
             URL url = new URL(PERCY_SERVER_ADDRESS + "/percy/comparison");

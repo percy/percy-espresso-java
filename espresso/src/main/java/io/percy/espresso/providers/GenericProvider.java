@@ -62,6 +62,8 @@ public class GenericProvider {
         this.metadata = new Metadata(options);
         JSONObject tag = getTag();
         List<Tile> tiles = captureTiles(options.getFullScreen());
-        return cliWrapper.postScreenshot(name, tag, tiles, null);
+        String testCase = options.getTestCase();
+        String labels = options.getLabels();
+        return cliWrapper.postScreenshot(name, tag, tiles, null, testCase, labels);
     }
 }
