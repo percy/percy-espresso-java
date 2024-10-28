@@ -56,7 +56,7 @@ val options = ScreenshotOptions()
 percy.screenshot("Screenshot", options)
 ```
 
-- `name` (**required**) - The screenshot name; must be unique to each screenshot
+- `name` (**required**) - The screenshot name; must be unique to each screenshot.
 - `options object` (**optional**) 
 
 | Setter Method  | Description |
