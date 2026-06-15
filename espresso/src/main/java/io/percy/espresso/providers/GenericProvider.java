@@ -35,10 +35,22 @@ public class GenericProvider {
         return tag;
     }
 
+    /**
+     * Acquires the screenshot bitmap. Extracted as an overridable seam so the
+     * bitmap source can be substituted in unit tests without an emulator. Runtime
+     * behavior is unchanged: production callers still go through
+     * {@code Screenshot.capture()} exactly as before.
+     *
+     * @return the captured screen bitmap
+     */
+    protected Bitmap captureBitmap() {
+        return Screenshot.capture().getBitmap();
+    }
+
     public List<Tile> captureTiles(Boolean fullScreen) {
         Integer statusBar = metadata.statBarHeight();
         Integer navBar = metadata.navBarHeight();
-        Bitmap bitmap = Screenshot.capture().getBitmap();
+        Bitmap bitmap = captureBitmap();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         String content = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
