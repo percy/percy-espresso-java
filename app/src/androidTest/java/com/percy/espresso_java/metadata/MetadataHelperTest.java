@@ -21,6 +21,9 @@ public class MetadataHelperTest {
         assertEquals(MetadataHelper.sanitizedString("SM-12#3## "), "SM-123");
     }
 
+    // devices.csv is UTF-16 LE (with BOM). The assertions below are the device names
+    // as parsed with the correct charset, verified against the CSV contents.
+
     @Test
     public void testDeviceNameFromCSVSamsung() {
         // brand + marketing name
@@ -31,6 +34,17 @@ public class MetadataHelperTest {
     public void testDeviceNameFromCSVRedmi() {
         // marketing name
         assertEquals(MetadataHelper.deviceNameFromCSV("22041216UC"), "Redmi Note 11T Pro +");
+    }
+
+    @Test
+    public void testDeviceNameFromCSVPixel() {
+        // brand + marketing name (Google)
+        assertEquals(MetadataHelper.deviceNameFromCSV("Pixel 7"), "Google Pixel 7");
+    }
+
+    @Test
+    public void testDeviceNameFromCSVSamsungGalaxyS23() {
+        assertEquals(MetadataHelper.deviceNameFromCSV("SM-S918B"), "Samsung Galaxy S23 Ultra");
     }
 
     @Test
