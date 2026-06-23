@@ -2,8 +2,13 @@ name: Publish
 
 on:
   release:
-    # We'll run this workflow when a new GitHub release is created
-    types: [released]
+    # Run on full releases AND pre-releases (e.g. *-beta.N). GitHub fires
+    # `released` only for non-prerelease releases and `prereleased` for
+    # pre-releases, so both are needed to publish betas.
+    types: [released, prereleased]
+  # Allow publishing manually from the Actions tab (pick the branch/tag to
+  # build) without having to (re)create a GitHub release.
+  workflow_dispatch:
 
 jobs:
   publish:
