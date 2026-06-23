@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import io.percy.espresso.lib.Cache;
 
@@ -22,11 +23,18 @@ public class MetadataHelper {
         try
         {
             InputStream inputStream = Metadata.class.getResourceAsStream("/devices.csv");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            // The bundled devices.csv is encoded UTF-16 LE with a byte-order mark.
+            // Use the UTF-16 charset so the BOM selects the byte order and is stripped,
+            // instead of relying on the platform-default charset (UTF-8), which left
+            // interleaved NUL bytes and a stray BOM that only worked by accident.
+            BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_16));
             String device = parseBufferReader(bufferedReader, model);
             if (device == null) {
                 URL url = new URL("https://storage.googleapis.com/play_public/supported_devices.csv");
-                BufferedReader bufferedReaderNew = new BufferedReader(new InputStreamReader(url.openStream()));
+                // The remote Google Play devices list is UTF-8; read it explicitly.
+                BufferedReader bufferedReaderNew = new BufferedReader(
+                    new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
                 device = parseBufferReader(bufferedReaderNew, model);
             }
             return device;
