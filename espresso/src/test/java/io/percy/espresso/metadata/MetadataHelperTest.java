@@ -10,11 +10,14 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static org.junit.Assert.assertNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 
 import io.percy.espresso.lib.Cache;
+import io.percy.espresso.testutil.StubHttpServer;
 
 /**
  * Robolectric is required because the no-arg helpers read android.os.Build, and
@@ -107,6 +110,73 @@ public class MetadataHelperTest {
         RuntimeException ex = assertThrows(RuntimeException.class,
                 () -> MetadataHelper.parseBufferReader(broken, "X"));
         assertNotNull(ex.getCause());
+    }
+
+    /**
+     * Exercises the remote-CSV fallback branch of {@code resolveDeviceNameFromCSV}.
+     *
+     * <p>The local lookup is forced to miss (returns null) so control enters the
+     * {@code device == null} branch, and the REAL {@code openRemoteCsvReader()}
+     * runs end-to-end -- {@code new URL(...)} plus {@code url.openStream()} -- but
+     * pointed at a loopback {@link StubHttpServer} via the {@code remoteCsvUrl()}
+     * seam instead of the live Google endpoint. The stub serves a single CSV row
+     * which the real {@code parseBufferReader} then matches, proving the fallback
+     * returns the parsed remote device name.
+     */
+    @Test
+    public void testRemoteCsvFallbackSuccessPath() throws IOException {
+        try (StubHttpServer server = new StubHttpServer(
+                200, "Content-Type", "text/csv",
+                "Acme,Acme RemotePhone,codename,REMOTE-MODEL\n")) {
+            MetadataHelper helper = new MetadataHelper() {
+                @Override
+                protected String localLookup(String model) {
+                    // Force a local miss so the remote fallback is taken.
+                    return null;
+                }
+                @Override
+                protected String remoteCsvUrl() {
+                    // Redirect the real open/stream logic to the loopback stub.
+                    return server.getBaseUrl() + "/supported_devices.csv";
+                }
+            };
+            // marketingName ("Acme RemotePhone") starts with brand ("Acme") -> marketing only.
+            assertEquals("Acme RemotePhone", helper.resolveDeviceNameFromCSV("REMOTE-MODEL"));
+        }
+    }
+
+    /**
+     * Exercises the {@code catch (IOException)} / {@code return null} tail of
+     * {@code resolveDeviceNameFromCSV}. The local lookup misses, then the remote
+     * reader throws an IOException (the same failure mode a real network outage
+     * would produce), which the catch swallows (printStackTrace) and the method
+     * returns null.
+     */
+    @Test
+    public void testRemoteCsvFallbackIOExceptionReturnsNull() {
+        MetadataHelper helper = new MetadataHelper() {
+            @Override
+            protected String localLookup(String model) {
+                return null;
+            }
+            @Override
+            protected BufferedReader openRemoteCsvReader() throws IOException {
+                throw new IOException("simulated network failure");
+            }
+        };
+        assertNull(helper.resolveDeviceNameFromCSV("ANY-MODEL"));
+    }
+
+    /**
+     * Pins the production remote-CSV endpoint. Exercises the real
+     * {@code remoteCsvUrl()} (the unoverridden constant) on a plain instance, so
+     * the seam's default value is covered by behavior and a stray edit to the
+     * Google Play URL would fail this test.
+     */
+    @Test
+    public void testRemoteCsvUrlIsProductionEndpoint() {
+        assertEquals("https://storage.googleapis.com/play_public/supported_devices.csv",
+                new MetadataHelper().remoteCsvUrl());
     }
 
     @Test
