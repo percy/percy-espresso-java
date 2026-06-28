@@ -27,9 +27,11 @@ jobs:
         # to the Sonatype Central Portal, and auto-releases the deployment.
       - name: Publish to Maven Central
         run: ./gradlew publishToMavenCentral --max-workers 1 --no-configuration-cache
+        # Uses the same four Central Portal secrets as the other io.percy SDKs
+        # (percy-java-selenium / percy-playwright-java): OSSRH_USERNAME +
+        # OSSRH_TOKEN for the Portal user token, and the MAVEN_GPG_* GPG key.
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
-          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_TOKEN }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
