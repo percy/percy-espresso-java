@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     id 'com.android.library'
@@ -38,13 +39,14 @@ dependencies {
 mavenPublishing {
     coordinates('io.percy', 'espresso-java', '1.0.5-beta.0')
 
-    // Publish the release AAR with sources + javadoc jars (javadoc jar is
-    // required by Maven Central release validation).
+    // Publish the release variant with sources + javadoc jars
+    // (variant, withSourcesJar, withJavadocJar). Maven Central requires a
+    // javadoc jar to be present.
     configure(new AndroidSingleVariantLibrary('release', true, true))
 
-    // Central Portal is the default host; `true` auto-releases the deployment
-    // after upload (replaces the old close-and-release Nexus step).
-    publishToMavenCentral(true)
+    // `true` auto-releases the deployment after upload (replaces the old
+    // close-and-release Nexus step).
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
     signAllPublications()
 
     pom {
