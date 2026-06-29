@@ -1,5 +1,8 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+
 plugins {
     id 'com.android.library'
+    id 'com.vanniktech.maven.publish'
 }
 
 android {
@@ -32,10 +35,37 @@ dependencies {
     implementation 'androidx.test:core:1.5.0'
 }
 
-ext {
-    PUBLISH_GROUP_ID = 'io.percy'
-    PUBLISH_VERSION = '1.0.5-beta.1'
-    PUBLISH_ARTIFACT_ID = 'espresso-java'
-}
+mavenPublishing {
+    coordinates('io.percy', 'espresso-java', '1.0.5-beta.1')
 
-apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
+    // Publish the release AAR with sources + javadoc jars (javadoc jar is
+    // required by Maven Central release validation).
+    configure(new AndroidSingleVariantLibrary('release', true, true))
+
+    // Central Portal is the default host; `true` auto-releases the deployment
+    // after upload (replaces the old close-and-release Nexus step).
+    publishToMavenCentral(true)
+    signAllPublications()
+
+    pom {
+        name = 'espresso-java'
+        description = 'App Percy official espresso SDK'
+        url = 'https://github.com/percy/percy-espresso-java'
+        licenses {
+            license {
+                name = 'MIT License'
+                url = 'https://github.com/percy/percy-espresso-java/blob/main/LICENSE'
+            }
+        }
+        developers {
+            developer {
+                name = 'Team Browserstack'
+            }
+        }
+        scm {
+            connection = 'scm:git:github.com/percy/percy-espresso-java.git'
+            developerConnection = 'scm:git:ssh://github.com/percy/percy-espresso-java.git'
+            url = 'https://github.com/percy/percy-espresso-java/tree/main'
+        }
+    }
+}
